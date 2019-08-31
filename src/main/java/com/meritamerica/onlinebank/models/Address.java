@@ -1,6 +1,9 @@
 package com.meritamerica.onlinebank.models;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "address")
@@ -20,7 +25,10 @@ public class Address {
 	private String state;
 	private String city;
 	private String street;
-	private Integer zip_code;
+	private String zip_code;
+    @Column(updatable=false)
+	private Date createdAt;
+	private Date updatedAt;
 	
     @OneToOne(mappedBy="address", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private User user;
@@ -30,13 +38,16 @@ public class Address {
 
 	}
 
-	public Address(String country, String state, String city, String street, Integer zip_code) {
+	public Address(String country, String state, String city, String street, String zip_code ,  Date createdAt,
+			Date updatedAt) {
 
 		this.country = country;
 		this.state = state;
 		this.city = city;
 		this.street = street;
 		this.zip_code = zip_code;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 	}
 
 	public Long getAddress_id() {
@@ -79,11 +90,35 @@ public class Address {
 		this.street = street;
 	}
 
-	public Integer getZip_code() {
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String  getZip_code() {
 		return zip_code;
 	}
 
-	public void setZip_code(Integer zip_code) {
+	public void setZip_code(String zip_code) {
 		this.zip_code = zip_code;
 	}
 

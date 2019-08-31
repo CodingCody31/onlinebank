@@ -18,6 +18,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -25,50 +26,32 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long user_id;
-	@Size(min = 1, max = 15)
 	private String first_name;
-	@Size(min = 1, max = 15)
-	private String middle_name;
-	@Size(min = 1, max = 15)
 	private String last_name;
-	private String birth_date;
-	private String gender;
-	private String phone;
-	@Size(min = 5, max = 10)
 	private String username;
-	@Size(min = 6, max = 15)
 	private String password;
-	@Size(min = 20, max = 40)
 	private String email;
-	private Long ssn;
-	@JoinColumn(name = "address_id")
-	// This will not allow the createdAt column to be updated after creation
 	@Column(updatable = false)
-	
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-	public User() {
-	}
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "address_id")
+	private Address address;
 
-	public User(String first_name, String middle_name, String last_name, String birth_date, String gender, String phone,
-			String username, @Size(min = 6, max = 15) String password, String email, Long ssn, Date createdAt,
-			Date updatedAt) {
-		
+	public User(String first_name, String last_name, String username, String password, String email, Date createdAt,
+			Date updatedAt, Address address) {
 		this.first_name = first_name;
-		this.middle_name = middle_name;
 		this.last_name = last_name;
-		this.birth_date = birth_date;
-		this.gender = gender;
-		this.phone = phone;
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.ssn = ssn;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.address = address;
+	}
+
+	public User() {
 	}
 
 	public Long getUser_id() {
@@ -87,44 +70,12 @@ public class User {
 		this.first_name = first_name;
 	}
 
-	public String getMiddle_name() {
-		return middle_name;
-	}
-
-	public void setMiddle_name(String middle_name) {
-		this.middle_name = middle_name;
-	}
-
 	public String getLast_name() {
 		return last_name;
 	}
 
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
-	}
-
-	public String getBirth_date() {
-		return birth_date;
-	}
-
-	public void setBirth_date(String birth_date) {
-		this.birth_date = birth_date;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 
 	public String getUsername() {
@@ -151,14 +102,6 @@ public class User {
 		this.email = email;
 	}
 
-	public Long getSsn() {
-		return ssn;
-	}
-
-	public void setSsn(Long ssn) {
-		this.ssn = ssn;
-	}
-
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -175,15 +118,12 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-	  // other getters and setters removed for brevity
-    @PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-    @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
-	
-	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 }
