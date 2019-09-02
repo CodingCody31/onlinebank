@@ -24,17 +24,17 @@ public class Transactions {
 	private Date createdAt;
 	private Date updatedAt;
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="balance_id")
-    private Balance balance;
+    @JoinColumn(name="account_id")
+    private Account account;
 	Transactions() {
 		
 	}
-	public Transactions(Double amount, Date createdAt, Date updatedAt, Balance balance) {
+	public Transactions(Double amount, Date createdAt, Date updatedAt, Account account) {
 		
 		this.amount = amount;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.balance = balance;
+		this.account = account;
 	}
 	public Long getTransaction_id() {
 		return transaction_id;
@@ -60,11 +60,11 @@ public class Transactions {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public Balance getBalance() {
-		return balance;
+	public Account getAccount() {
+		return account;
 	}
-	public void setBalance(Balance balance) {
-		this.balance = balance;
+	public void setBalance(Account account) {
+		this.account = account;
 	}
 
 }

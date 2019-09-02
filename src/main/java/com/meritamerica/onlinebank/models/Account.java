@@ -21,6 +21,7 @@ public class Account {
 	private Long account_id;
 	private String type;
 	private Integer acc_num;
+	private Double amount; 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "acc_type_id")
 	private Acc_Type acc_types;
@@ -65,6 +66,14 @@ public class Account {
 
 	public void setAcc_types(Acc_Type acc_types) {
 		this.acc_types = acc_types;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
 
 }

@@ -9,23 +9,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class OnlineBank {
 
 	
-		@RequestMapping("")
-		public String index(){
-		return "index.jsp";
+		@RequestMapping("/")
+		public String home(){
+		return "/views/Home.jsp";
 		}
 
-		@RequestMapping("/main")
-		public String main(){
-		return "main.jsp";
+		@RequestMapping("/accounts")
+		public String accounts(){
+		return "/views/Account.jsp";
 		}
-		@RequestMapping("/newAccount")
-		public String newAccount(){
-		return "newAccount.jsp";
+		@RequestMapping("/transfers")
+		public String transfers(){
+		return "/views/Transfer.jsp";
 		}
 
-		@RequestMapping("/aboutus")
-		public String aboutus(){
-		return "aboutus.jsp";
+		@RequestMapping("/settings")
+		public String settings(){
+		return "/views/Setting.jsp";
+		}
+		@RequestMapping("/transactions")
+		public String transactions(){
+		return "/views/Transactions.jsp";
 		}
 		@RequestMapping("/main/checking")
 		public String checking (Model model){
