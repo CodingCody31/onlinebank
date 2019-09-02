@@ -16,7 +16,7 @@
 			<div class="titles">
 				<h1 id="title">The Best Banking<br>In The World!</h1>
 				<h2 id="subtitle">Easy sign up, and no hidden fee's</h2>
-				<a href="signup.html" id ="signup">Sign Up</a>
+				<a href="/signup" id ="signup">Sign Up</a>
 			</div>
 			<div id="signin">
 				<p>View Your Accounts</p>

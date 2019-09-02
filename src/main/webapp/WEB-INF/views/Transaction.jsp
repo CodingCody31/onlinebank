@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Transfers Page</title>
+	<title>Transactions Page</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
 			<img id ="logo" src="images/logo.png">
 		</div>
 		<div class="sidebar">
-			<a href="/views/Transaction.jsp"><h1 id="nav_text_transactions">Transactions</h1></a>
+			<a href="/Transaction.jsp"><h1 id="nav_text_transactions">Transactions</h1></a>
 			<br>
 		</div>
 </body>

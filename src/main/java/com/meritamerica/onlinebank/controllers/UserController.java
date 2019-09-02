@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 	@RequestMapping("/signup")
 	public String signUp() {
-		return "/SignUp.jsp"; // Robert, the jsp will have to be completed once Jesse sends over the html/css for it. 
+		return "/SignUp.jsp";
 	}
 	
 

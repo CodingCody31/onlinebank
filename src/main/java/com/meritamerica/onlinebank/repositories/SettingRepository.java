@@ -2,6 +2,6 @@ package com.meritamerica.onlinebank.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface SettingRepository extends CrudRepository{
+public interface SettingRepository{
 
 }
