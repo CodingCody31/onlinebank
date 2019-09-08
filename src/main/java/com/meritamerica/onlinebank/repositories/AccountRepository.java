@@ -4,4 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface AccountRepository{
 
+	void deleteById(Long id);
+
 }
