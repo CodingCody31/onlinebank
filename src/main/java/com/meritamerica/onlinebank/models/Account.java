@@ -26,7 +26,7 @@ public class Account {
 	@JoinColumn(name = "acc_type_id")
 	private Acc_Type acc_types;
 
-	Account() {
+	public Account() {
 	}
 
 	public Account(String type, Integer acc_num, Acc_Type acc_types) {
@@ -74,6 +74,11 @@ public class Account {
 
 	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

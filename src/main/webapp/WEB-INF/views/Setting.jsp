@@ -13,7 +13,7 @@
 			<img id ="logo" src="images/logo.png">
 		</div>
 		<div class="sidebar">
-			<a href="/accounts"><h1 id="nav_text_accounts"><b>Accounts</b></h1></a>
+			<a href="/accounts"><h1 id="nav_text_accounts">Accounts</h1></a>
 			<br>
 			<a href="/transactions"><h1 id="nav_text_transactions">Transactions</h1></a>
 			<br>
@@ -22,6 +22,18 @@
 			<a href="/settings"></a><h1 id="nav_text_settings"><b>Settings</b></h1></a>
 			<br>
 			<a href="/"><h1 id="nav_text_signoff">Sign Off</h1></a>
-		</div>
+					</div> 
+			<div>
+			<h1> <c:out value="${user.first_name}"/> </h1>
+			
+			</div>
+					
+			<button type="Submit"> Create </button>
+			<button type="Delete"> delete </button>
+
+<br>
+					
+					
+					
 </body>
 </html>
