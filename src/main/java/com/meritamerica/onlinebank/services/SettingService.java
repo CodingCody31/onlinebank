@@ -1,11 +1,8 @@
 package com.meritamerica.onlinebank.services;
 
-import java.util.Optional;
-
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
 
 import com.meritamerica.onlinebank.models.User;
 import com.meritamerica.onlinebank.repositories.SettingRepository;
@@ -13,34 +10,33 @@ import com.meritamerica.onlinebank.repositories.SettingRepository;
 
 @Service
 public class SettingService {
-	private final SettingRepository settingRepository;
+
+private static SettingRepository settingRepository;
 	
 	
 	public SettingService(SettingRepository settingRepository ) {
-		this.settingRepository = settingRepository;
+		SettingService.settingRepository = settingRepository;
 	}
 	
-	public Optional<User> findUser (Long id) {
+	public java.util.Optional<User> findUser (Long id) {
 		return settingRepository.findById(id);
 	}
 	
 	
-	
-	public User addAccount(User current) {
-		return settingRepository.save(current);
-	}
-	
+	public User addAccount(@Valid User user) {
+		return settingRepository.save(user);
+	}	
 	public void deleteaccount(Long id) {
 		settingRepository.deleteById(id);
 		
-		//create button delete account
 		
-		
-		
-	}
-	
+		 
+		}
 	
 }
+	
+	
+
 
 
 

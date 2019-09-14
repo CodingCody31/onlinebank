@@ -7,6 +7,8 @@
 	<meta charset="UTF-8">
 	<title>Settings Page</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+		
 </head>
 <body>
 	<div class="header">
@@ -27,13 +29,14 @@
 			<h1> <c:out value="${user.first_name}"/> </h1>
 			
 			</div>
-					
-			<button type="Submit"> Create </button>
-			<button type="Delete"> delete </button>
 
+			<button type="button">
+  			Create
+			</button>
+			<button type="button"> Delete </button>
+					
 <br>
-					
-					
+			
 					
 </body>
 </html>
