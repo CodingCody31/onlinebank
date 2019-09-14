@@ -47,6 +47,7 @@ public class User {
 	    )
 	    private List<Account> accounts;
 	 
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "address_id")
 	private Address address;
@@ -136,6 +137,13 @@ public class User {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
 	}
 
 }
