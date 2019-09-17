@@ -23,7 +23,7 @@ public class TransferService {
 	}
 	
 	 public Optional<Account> findAccountById(Id id)
-	 	 { return AccountRepository.Id(id); }
+	 	 { return accountRepository.findById(id); }
 	
 	public static int AccountBalance;
 

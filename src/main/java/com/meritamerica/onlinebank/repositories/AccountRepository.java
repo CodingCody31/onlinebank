@@ -5,7 +5,7 @@ package com.meritamerica.onlinebank.repositories;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface AccountRepository {
+public interface AccountRepository extends CrudRepository {
 
 	void deleteById(Long id);
 
