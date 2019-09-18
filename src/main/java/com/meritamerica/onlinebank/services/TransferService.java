@@ -14,41 +14,35 @@ import com.meritamerica.onlinebank.repositories.TransferRepository;
 
 public class TransferService {
 	
-	private CrudRepository<Account, Id> accountRepository;
+	private static TransferRepository transferRepository;
 	public TransferService(TransferRepository transferRepository) {
+		this.transferRepository = transferRepository;
 	}
-	
-	public Account addaccount(Account account) {
-		return accountRepository.save(account);
-	}
-	
-	 public Optional<Account> findAccountById(Id id)
-	 	 { return accountRepository.findById(id); }
-	
-	public static int AccountBalance;
 
-
-	public static void setAccountBalance(int accountBalance) {
-		TransferService.AccountBalance = accountBalance;
-	}
-	
-	public static int getAccountBalance() {
-		return AccountBalance;
-	}
-	
-	
-	public void depositMoney(double amount) {
-		AccountBalance += amount;
-	}
-	
-	public double withdrawMoney(double amount) {
-		if(amount > AccountBalance) {
-			return AccountBalance;
-		}else {
-			AccountBalance -= amount;
-			return AccountBalance;
+	 
+	public Account findAccounts (Long id) {
+		Optional<Account> optionalAccount = transferRepository.findById(id);
+		if (optionalAccount.isPresent()) {
+			return optionalAccount.get();
+		} else {
+			return null;
 		}
 	}
+	
+	
+	
+//	public Account depositMoney(double amount) {
+//		AccountBalance += amount;
+//	}
+//	
+//	public double withdrawMoney(double amount) {
+//		if(amount > AccountBalance) {
+//			return AccountBalance;
+//		}else {
+//			AccountBalance -= amount;
+//			return AccountBalance;
+//		}
+//	}
 
 	public static boolean authenticateAccount(String acc_num, String account_id){
 		return true;

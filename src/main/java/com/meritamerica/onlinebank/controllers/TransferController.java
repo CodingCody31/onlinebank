@@ -1,43 +1,50 @@
 package com.meritamerica.onlinebank.controllers;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.meritamerica.onlinebank.models.Account;
+import com.meritamerica.onlinebank.models.User;
 import com.meritamerica.onlinebank.services.AccountService;
-import com.meritamerica.onlinebank.services.TransferService;
+import com.meritamerica.onlinebank.services.UserService;
 
-@Controller
 public class TransferController {
+	
 	private final AccountService accountService;
-	
-	
-	public TransferController(TransferService transferService, AccountService accountService) {
+	private final UserService userService;
+	public TransferController(AccountService accountService ,UserService userService ) {
 		this.accountService = accountService;
+		this.userService = userService;
 	}
 
 	@RequestMapping("/transfers")
-	public String transfers(){
+	public String accounts(){
 	return "/Transfer.jsp";
 	}
 
-	@PostMapping("/transfers/type")
-	public String transferAmount(@RequestParam("acc_num") String acc_num , @RequestParam("account_id") String account_id , Model model , HttpSession session) {
-		boolean isAuthenticated = TransferService.authenticateAccount(acc_num, account_id);
-		if(isAuthenticated) {
-						
-			model.addAttribute("account",accountService.getaccount_id(id).get());
-			return "/Transfer.jsp";
+	
+	
+	@RequestMapping("/transfers/{id}")
+	public String showProfile(@PathVariable("id")Long id, Model model) {
+		
+		List<Account> user =  userService.findUsers(id).getAccounts();
+		List<User> userAccount = accountService.findAccounts(id).getUsers();
+				
+
+
+		if (user == null) {
+			return "redirect:/";
 		}else {
-			model.addAttribute("error", "Invalid credentials");
-			return "/Home.jsp";
+			model.addAttribute("account", userAccount);
+			model.addAttribute("user", user);
+
+
+			return "/Transfer.jsp";
 		}
-	}
+		
+}
 
 }

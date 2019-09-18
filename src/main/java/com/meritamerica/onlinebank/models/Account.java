@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,6 +27,16 @@ public class Account {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "acc_type_id")
 	private Acc_Type acc_types;
+	
+	 @ManyToMany(fetch = FetchType.LAZY)
+	    @JoinTable(
+	        name = "users_accounts", 
+	        joinColumns = @JoinColumn(name = "user_id"), 
+	        inverseJoinColumns = @JoinColumn(name = "account_id")
+	    )
+	 
+	    private List<User> users;
+
 
 	public Account() {
 	}
@@ -79,6 +91,14 @@ public class Account {
 	public void setName(String name) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 }
