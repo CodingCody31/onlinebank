@@ -6,21 +6,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
 <title>Account Page</title>
 </head>
 <body>
 <h2>Accounts</h2>
 
+        
+       
 
 
-<form action="deposit">
-  Deposit: <input type="text" name="fname"><br>
-  <input type="submit" value="Submit">
-</form>
 
 <c:forEach items="${user}" var="user">
        <tr>
-           <td><c:out value="${user.account_id} ${user.type} ${user.amount}"/> <br/></td>
+           <td><c:out value="${user.account_id} ${user.type} ${user.amount}" />
+           <a href="deposit/${user.account_id}"> ->Deposit</a>            
+           <a href="withdraw/${user.account_id}"> ->Withdraw</a>
+            <br/></td>
            
           
        </tr>

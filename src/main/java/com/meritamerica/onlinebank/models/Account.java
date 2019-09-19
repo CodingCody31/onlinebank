@@ -41,11 +41,17 @@ public class Account {
 	public Account() {
 	}
 
-	public Account(String type, Integer acc_num, Acc_Type acc_types) {
+	public Account(Long account_id, String type, Integer acc_num, Double amount, Acc_Type acc_types, List<User> users) {
 
+	
+		this.account_id = account_id;
 		this.type = type;
 		this.acc_num = acc_num;
+		this.amount = amount;
 		this.acc_types = acc_types;
+		this.users = users;
+
+
 	}
 
 	public Long getAccount_id() {
