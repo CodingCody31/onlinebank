@@ -4,6 +4,8 @@ package com.meritamerica.onlinebank.repositories;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,11 +1,19 @@
 package com.meritamerica.onlinebank.controllers;
 
+import java.security.Principal;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.meritamerica.onlinebank.models.Account;
 import com.meritamerica.onlinebank.models.User;
@@ -28,10 +36,12 @@ public class AccountController {
 	return "/Account.jsp";
 	}
 
+
 	
+
 	
 	@RequestMapping("/accounts/{id}")
-	public String showProfile(@PathVariable("id")Long id, Model model) {
+	public String showAccount(@PathVariable("id")Long id, Model model) {
 		
 		List<Account> user =  userService.findUsers(id).getAccounts();
 		List<User> userAccount = accountService.findAccounts(id).getUsers();
@@ -47,7 +57,53 @@ public class AccountController {
 
 			return "/showAccount.jsp";
 		}
-		
+				
 }
+	
+	
+
+	@RequestMapping("/accounts/deposit/{id}")
+	public String editLanguage(@PathVariable("id") Long id, Model model) {
+		System.out.println("Are we getting in here?");
+		Account account = accountService.findAccounts(id);
+				model.addAttribute("account", account);
+			return "/Deposit.jsp";
+		
+	}
+	@RequestMapping("/accounts/withdraw/{id}")
+	public String whithdraw(@PathVariable("id") Long id, Model model) {
+		System.out.println("withdraw");
+
+		Account account = accountService.findAccounts(id);
+				model.addAttribute("account", account);
+			return "/Withdraw.jsp";
+		
+	}
+	
+	@RequestMapping(value = "/deposit/{id}", method = RequestMethod.PUT)
+	public String edit(@PathVariable("id") Long id, @Valid @ModelAttribute("amount")  double amount, Model model) {
+		Account account = accountService.findAccounts(id);
+		User user = userService.findUsers(id);
+				model.addAttribute("account", account);
+				System.out.println(amount);
+				System.out.println(account.getAmount());
+		accountService.updateDeposit( id ,amount); 
+		return "redirect:/accounts/1";
+				
+	}
+	
+
+
+	
+	@RequestMapping(value = "/withdraw/{id}", method = RequestMethod.PUT)
+	public String editWithdraw(@PathVariable("id") Long id, @Valid @ModelAttribute("amount")  double amount, Model model) {
+		Account account = accountService.findAccounts(id);
+				model.addAttribute("account", account);
+				System.out.println(amount);
+				System.out.println(account.getAmount());
+		accountService.updateWithdraw( id ,amount); 
+		return "redirect:/accounts/1";
+				
+	}
 
 }

@@ -1,7 +1,10 @@
 package com.meritamerica.onlinebank.services;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,11 @@ public class AccountService {
 		this.accountRepository = accountRepository;
 	}
 	
+	
+	
+
+	
+	
 		public Account findAccounts(Long id) {
 			Optional<Account> optionalAccounts = accountRepository.findById(id);
 			if (optionalAccounts.isPresent()) {
@@ -28,4 +36,36 @@ public class AccountService {
 			}
 		}
 
+
+
+
+	public void updateDeposit( long id , double d) {
+		Account account = findAccounts(id);
+		System.out.print("Update Deposit --- >" + account);
+		account.setAmount(d + account.getAmount());
+		System.out.print("Set Amount --- >" + d + account.getAmount());
+
+		
+		accountRepository.save(account);
+		}
+
+	public void updateWithdraw( long id , double d) {
+		Account account = findAccounts(id);
+		System.out.print("Update Deposit --- >" + account);
+		account.setAmount(d + account.getAmount());
+			
+		accountRepository.save(account);
+		}
+
+
+
+
+
+
+		
+		
+		
+		
+
+	
 	}
