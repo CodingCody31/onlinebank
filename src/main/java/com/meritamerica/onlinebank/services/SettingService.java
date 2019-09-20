@@ -17,38 +17,42 @@ import com.meritamerica.onlinebank.repositories.SettingRepository;
 public class SettingService {
 
 private static SettingRepository settingRepository;
+private static User user;
 	
 	
 	public SettingService(SettingRepository settingRepository ) {
 		SettingService.settingRepository = settingRepository;
 	}
 	
-	public java.util.Optional<User> findUser (Long id) {
-		return settingRepository.findById(id);
+	public User findUser (Long id) {
+		Optional<User> optionalUser = settingRepository.findById(id);
+		if (optionalUser.isPresent()) {
+			return optionalUser.get();
+		} else {
+			return null;
+		}
 	}
 	
-	
-	public User userAccount(@Valid User user) {
+	public User userAccount(User user) {
 		return settingRepository.save(user);
 	}	
+	
 	public void deleteaccount(Long id) {
-		settingRepository.deleteById(id);
-		
+		settingRepository.deleteById(id);	
 	}
 	
-	public User updateUser(String first_name, String last_name, String username, String password, String 
+	public User updateUser(Long id, String first_name, String last_name, String username, String password, String 
 			email) {
-		
-		 User user = new User(first_name, last_name, username, password, email);
-				 return settingRepository.save(user);
-		 
+		User user = findUser(id);
+		user.setFirst_name(first_name);
+		user.setLast_name(last_name);
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setEmail(email);
+		return settingRepository.save(user); 
 	}
-	public User updateUser(User user) {
-		
-		
-				 return settingRepository.save(user);
-		 
-	
+	public User updateUser(User user) {	
+		 return settingRepository.save(user);
 	}
 }
 	

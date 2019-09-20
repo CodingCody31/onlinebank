@@ -42,16 +42,15 @@ public class SettingController {
 		return "/UserUpdate.jsp";
 	}
 
-	
-	
-	
 	@RequestMapping(value="/update/{id}", method=RequestMethod.PUT)
-	   public String updateuser(@Valid @ModelAttribute("user") User user, BindingResult result) {
-	       if (result.hasErrors()) {
+	   public String updateuser(@PathVariable("id") Long id, @Valid @ModelAttribute("user") User user , Model model, BindingResult result) {
+	    model.addAttribute("user", user);
+	    user.setUser_id(id);
+	    if (result.hasErrors()) {
 	           return "/UserUpdate.jsp";
 	       } else {
-	           settingService.updateUser(user);
-	           return "redirect:/Setting.jsp";
+	    	   settingService.updateUser(user);
+	           return "redirect:/settings/{id}";
 	       }
 	   }
 	

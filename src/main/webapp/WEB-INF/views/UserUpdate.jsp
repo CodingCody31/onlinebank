@@ -29,14 +29,14 @@
 					</div> 
 					
 								<div>
-			<form:form id="regForm" modelAttribute="user" action="/settings/${id}" method="post">
+			<form:form id="regForm" modelAttribute="user" action="/update/${id}" method="post">
 			<input type="hidden" name="_method" value="put">
 				<br><br><br>
 				<table class="table table-hover">
 				<tr>
 					<td> <form:label path="first_name">First Name</form:label></td>
 					<td> <form:input path="first_name" name="first_name" id="first_name"/></td>
-				</tr>
+				</tr> 
 				<tr>
 					<td><form:label path="last_name">Last Name</form:label></td>
 					<td><form:input path="last_name" name="last_name" id="last_name" /></td>
@@ -45,7 +45,10 @@
 					<td><form:label path="email">Email</form:label></td>
 					<td><form:input path="email" name="email" id="email" /></td>
 				</tr>
-				
+					<tr>
+					<td><form:label path="username">Username</form:label></td>
+					<td><form:input path="username" name="username" id="username" /></td>
+				</tr>
 				<tr>
 					<td><form:label path="password">Password</form:label></td>
 					<td><form:input path="password" name="password" id="Password" /></td>

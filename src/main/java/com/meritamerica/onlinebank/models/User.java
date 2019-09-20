@@ -1,9 +1,9 @@
 package com.meritamerica.onlinebank.models;
 
+
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,26 +14,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "users")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long user_id;
 	private String first_name;
 	private String last_name;
 	private String username;
 	private String password;
 	private String email;
+	@Transient
+	private String passwordConfirmation;
 	@Column(updatable = false)
 
 	private Date createdAt;
@@ -64,6 +61,7 @@ public class User {
 		this.address = address;
 	}
 
+	
 	public User(String first_name, String last_name, String username, String password, String email) {
 		
 		this.first_name = first_name;
@@ -153,6 +151,14 @@ public class User {
 
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
+	}
+
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
 	}
 
 }

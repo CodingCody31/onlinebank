@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,25 +16,32 @@
 		<div class="signup_page">
 			<div id="signup_body">
 				<h1>Sign Up</h1>
-				<form>
-					<input type="text" name="username" placeholder="Username" required>
+				<%-- <form:errors path="user.*"/> --%>
+				<form:form method="POST" action="/signup" modelAttribute="user">
+					<form:label path="username">
+					<form:input type="username" path="username" name="username" placeholder="Username"/>
+					</form:label>
 					<br>
-					<input type="password" name="password" placeholder="Password" required>
+					<form:label path="password">
+					<form:password path="password" name="password" placeholder="Password"/>
+					</form:label>
 					<br>
-					<input type="text" name="question" placeholder="Security Question?" required>
+					<form:label path="passwordConfirmation"></form:label>
+           			<form:password path="passwordConfirmation" placeholder="Password Confirmation"/>
 					<br>
-					<input type="text" name="question" placeholder="Security Answer" required>
+					<form:label path="first_name">
+					<form:input type="first_name" path="first_name" name="first_name" placeholder="First Name"/>
+					</form:label>
 					<br>
-					<p>What are you opening today?</p>
-					<select name="accounts">
-	  					<option value="checkings">Checkings</option>
-	  					<option value="savings">Savings</option>
-	  					<option value="business">Buisness</option>
-	 					<option value="retirement">IRA Account</option>
-					</select>
+					<form:label path="last_name">
+					<form:input type="last_name" path="last_name" name="last_name" placeholder="Last Name"/>
+					</form:label>
+					<form:label path="email">
+					<form:input type="email" path="email" name="email" placeholder="Email"/>
+					</form:label>
 					<br>
 					<input type="submit" name="submit" value="Sign Up">
-				</form>
+				</form:form>
 			</div>
 		</div>
 </body>
