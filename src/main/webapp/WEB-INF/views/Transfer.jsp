@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isErrorPage="true" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,15 +27,20 @@
 			<a href="/"><h1 id="nav_text_signoff">Sign Off</h1></a>
 		</div>
 		
-		<div>	
-		
-
-			<fieldset> 
-			<legend>Select Account</legend>
-			<input type="checkbox" name="account" value="savings" checked />Savings
-			<input type="checkbox" name="account" value="checking" />Checking		
-			</fieldset>
-		</div>
-		
-</body>
+		<div>
+		  
+		  <h2>
+			        <form:label path="transfers">Transfer:</form:label>
+    			    <form:select path="accountslist">
+						<c:forEach items="${accounts}" var="account">
+							<form:option value="${account.id}"><c:out value="${account.id}"/></form:option>
+						</c:forEach>c:forEach>
+					</form:select>
+		  </h2>
+					<form:form >			    
+								 <input type="submit" value="Select"/>
+					</form:form>
+           </div>
+                 
+		</body>
 </html>
