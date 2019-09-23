@@ -15,6 +15,6 @@ import com.meritamerica.onlinebank.models.User;
 		
 		
 		User findByEmail(String email);
-
+		User findByUsername(String username);
 	}
 

@@ -20,12 +20,12 @@
 			</div>
 			<div id="signin">
 				<p>View Your Accounts</p>
-				<form action = /account.html>
-					<input type="text" name="username" placeholder="Username" required>
+				<form action = "/login" method="post">
+					<input type="text" name="email" placeholder="Email" required>
 					<br>
 					<input type="password" name="password" placeholder="Password" required>
 					<br>
-					<a href="#">Forgot Username/Password?</a>
+					<a href="#">Forgot Password?</a>
 					<br>
 					<input type="submit" name="submit" value="Sign On">
 				</form>

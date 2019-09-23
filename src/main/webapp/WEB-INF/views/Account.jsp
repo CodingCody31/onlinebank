@@ -14,7 +14,7 @@
 			<img id ="logo" src="images/logo.png">
 		</div>
 		<div class="sidebar">
-			<a href="/accounts"><h1 id="nav_text_accounts"><b>Accounts</b></h1></a>
+			<a href="/accounts/${userId}"><h1 id="nav_text_accounts"><b>Accounts</b></h1></a>
 			<br>
 			<a href="/transactions"><h1 id="nav_text_transactions">Transactions</h1></a>
 			<br>

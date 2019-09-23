@@ -41,21 +41,29 @@ public class UserController {
 		} else {
 			User u = userService.registerUser(user);
 			session.setAttribute("userId", u.getUser_id());
-			return "redirect:/";
+			return "redirect:/home";
 		}
 		// else, save the user in the database, save the user id in session, and
-		
-		
 		// redirect them to the /home route
 	}
 
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model,
-//			HttpSession session) {
-//		// if the user is authenticated, save their user id in session
-//		// else, add error messages and return the login page
-//	}
-//
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model,
+			HttpSession session) {
+		boolean isAuthenticated = userService.authenticateUser(email, password);
+		if(isAuthenticated) {
+			User u = userService.findByEmail(email);
+			session.setAttribute("userId", u.getUser_id());
+			return "redirect:/accounts";
+		}
+		else {
+			model.addAttribute("error", "Invalid Credentials. Please try again");
+			return "/home";
+		}
+//		 if the user is authenticated, save their user id in session
+//		 else, add error messages and return the login page
+	}
+
 	@RequestMapping("/home")
 	public String home(HttpSession session, Model model) {
 		// get user from session, save them in the model and return the home page
