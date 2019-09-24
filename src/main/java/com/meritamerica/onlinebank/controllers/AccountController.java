@@ -3,6 +3,7 @@ package com.meritamerica.onlinebank.controllers;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -44,14 +45,14 @@ public class AccountController {
 	public String showAccount(@PathVariable("id")Long id, Model model) {
 		
 		List<Account> user =  userService.findUsers(id).getAccounts();
-		List<User> userAccount = accountService.findAccounts(id).getUsers();
+		//List<User> userAccount = accountService.findAccounts(id).getUsers();
 				
 
 
 		if (user == null) {
 			return "redirect:/";
 		}else {
-			model.addAttribute("account", userAccount);
+			//model.addAttribute("account", userAccount);
 			model.addAttribute("user", user);
 
 
@@ -81,14 +82,17 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value = "/deposit/{id}", method = RequestMethod.PUT)
-	public String edit(@PathVariable("id") Long id, @Valid @ModelAttribute("amount")  double amount, Model model) {
+	public String edit(@PathVariable("id") Long id, @Valid @ModelAttribute("amount")  double amount, Model model , HttpSession session) {
 		Account account = accountService.findAccounts(id);
 		User user = userService.findUsers(id);
 				model.addAttribute("account", account);
 				System.out.println(amount);
 				System.out.println(account.getAmount());
 		accountService.updateDeposit( id ,amount); 
-		return "redirect:/accounts/1";
+	
+		 session.setAttribute("userId",user.getUser_id());
+		
+		return "redirect:/accounts/{userId}";
 				
 	}
 	
@@ -96,13 +100,13 @@ public class AccountController {
 
 	
 	@RequestMapping(value = "/withdraw/{id}", method = RequestMethod.PUT)
-	public String editWithdraw(@PathVariable("id") Long id, @Valid @ModelAttribute("amount")  double amount, Model model) {
+	public String editWithdraw(@PathVariable("id") Long id, @Valid @ModelAttribute("amount")  double amount, Model model ,  HttpSession session) {
 		Account account = accountService.findAccounts(id);
 				model.addAttribute("account", account);
 				System.out.println(amount);
 				System.out.println(account.getAmount());
 		accountService.updateWithdraw( id ,amount); 
-		return "redirect:/accounts/1";
+		return "redirect:/accounts/";
 				
 	}
 
