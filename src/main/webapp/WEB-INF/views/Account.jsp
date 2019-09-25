@@ -17,9 +17,9 @@
 			<a href="accounts/${userId}"><h1 id="nav_text_accounts"><b>Accounts</b></h1></a>
 			
 			<br>
-			<a href="/transactions"><h1 id="nav_text_transactions">Transactions</h1></a>
+			<a href="/transactions/${userId}"><h1 id="nav_text_transactions">Transactions</h1></a>
 			<br>
-			<a href="/transfers"><h1 id="nav_text_transfers">Transfers</h1></a>
+			<a href="transfers/${userId}"><h1 id="nav_text_transfers">Transfers</h1></a>
 			<br>
 			<a href="/settings"></a><h1 id="nav_text_settings">Settings</h1></a>
 			<br>

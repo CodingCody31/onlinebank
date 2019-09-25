@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.meritamerica.onlinebank.models.Account;
 import com.meritamerica.onlinebank.models.User;
@@ -49,23 +50,18 @@ public class AccountService {
 		accountRepository.save(account);
 		}
 
-	public void updateWithdraw( long id , double d) {
+	public void updateWithdraw( long id , double d ,Model model) {
+		
+		
 		Account account = findAccounts(id);
 		System.out.print("Update Deposit --- >" + account);
-		account.setAmount(d + account.getAmount());
+		account.setAmount(d - account.getAmount());
+		   
+		if ( d > account.getAccount_id()) {
+			model.addAttribute("errorMessage", "You can not whitdraw");
+		} else 
+		
 			
-		accountRepository.save(account);
-		}
-
-
-
-
-
-
+		accountRepository.save(account); }
 		
-		
-		
-		
-
-	
 	}

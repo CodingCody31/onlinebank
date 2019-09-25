@@ -21,9 +21,11 @@ import com.meritamerica.onlinebank.models.User;
 import com.meritamerica.onlinebank.services.AccountService;
 import com.meritamerica.onlinebank.services.UserService;
 
-
 @Controller
 public class AccountController {
+	
+	static long vUser_Id;
+
 	
 	private final AccountService accountService;
 	private final UserService userService;
@@ -45,14 +47,16 @@ public class AccountController {
 	public String showAccount(@PathVariable("id")Long id, Model model) {
 		
 		List<Account> user =  userService.findUsers(id).getAccounts();
-		//List<User> userAccount = accountService.findAccounts(id).getUsers();
+		//String users =  userService.findUsers(id).getFirst_name();
 				
+		
+
 
 
 		if (user == null) {
 			return "redirect:/";
 		}else {
-			//model.addAttribute("account", userAccount);
+		//	model.addAttribute("users", users);
 			model.addAttribute("user", user);
 
 
@@ -89,10 +93,11 @@ public class AccountController {
 				System.out.println(amount);
 				System.out.println(account.getAmount());
 		accountService.updateDeposit( id ,amount); 
-	
-		 session.setAttribute("userId",user.getUser_id());
 		
-		return "redirect:/accounts/{userId}";
+		Long userId = (Long) session.getAttribute("userId");
+		User u = userService.findUsers(userId);
+		
+		return "redirect:/accounts/"+userId;
 				
 	}
 	
@@ -105,8 +110,10 @@ public class AccountController {
 				model.addAttribute("account", account);
 				System.out.println(amount);
 				System.out.println(account.getAmount());
-		accountService.updateWithdraw( id ,amount); 
-		return "redirect:/accounts/";
+		accountService.updateWithdraw( id ,amount,model ); 
+		Long userId = (Long) session.getAttribute("userId");
+		User u = userService.findUsers(userId);
+		return "redirect:/accounts/"+userId;
 				
 	}
 
