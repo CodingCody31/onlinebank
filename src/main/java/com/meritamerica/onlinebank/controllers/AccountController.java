@@ -43,23 +43,16 @@ public class AccountController {
 	
 	@RequestMapping("/accounts/{id}")
 	public String showAccount(@PathVariable("id")Long id, Model model) {
-		
 		List<Account> user =  userService.findUsers(id).getAccounts();
-		//List<User> userAccount = accountService.findAccounts(id).getUsers();
-				
-
-
+//		List<User> userAccount = accountService.findAccounts(id).getUsers();
 		if (user == null) {
 			return "redirect:/";
 		}else {
-			//model.addAttribute("account", userAccount);
+//			model.addAttribute("account", userAccount);
 			model.addAttribute("user", user);
-
-
 			return "/showAccount.jsp";
-		}
-				
-}
+		}		
+	}
 	
 	
 
@@ -69,16 +62,15 @@ public class AccountController {
 		Account account = accountService.findAccounts(id);
 				model.addAttribute("account", account);
 			return "/Deposit.jsp";
-		
 	}
+	
 	@RequestMapping("/accounts/withdraw/{id}")
 	public String whithdraw(@PathVariable("id") Long id, Model model) {
 		System.out.println("withdraw");
 
 		Account account = accountService.findAccounts(id);
 				model.addAttribute("account", account);
-			return "/Withdraw.jsp";
-		
+			return "/Withdraw.jsp";	
 	}
 	
 	@RequestMapping(value = "/deposit/{id}", method = RequestMethod.PUT)
@@ -88,11 +80,10 @@ public class AccountController {
 				model.addAttribute("account", account);
 				System.out.println(amount);
 				System.out.println(account.getAmount());
-		accountService.updateDeposit( id ,amount); 
-	
-		 session.setAttribute("userId",user.getUser_id());
+				accountService.updateDeposit( id ,amount); 
+//		 session.setAttribute("userId",user.getUser_id());
 		
-		return "redirect:/accounts/{userId}";
+		return "redirect:/accounts/{id}";
 				
 	}
 	
