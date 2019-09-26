@@ -14,7 +14,9 @@
 <form:form action="/withdraw/${id}" method="put" modelAttribute="account">
 
 
-
+<c:if test="${errorMessage != null}">
+        <c:out value="${errorMessage}"></c:out>
+    </c:if>
 <form:label path="amount">Withdraw
 <form:errors path="amount"/>
 <form:input path="amount"/>
