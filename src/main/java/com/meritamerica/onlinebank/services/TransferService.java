@@ -31,6 +31,7 @@ public class TransferService {
 	}
 	
 	public void transfer(Long fromId, Long toId, double amount) {
+<<<<<<< HEAD
         Account fromAccount = findAccounts(fromId);
         Account toAccount = findAccounts(toId);
         fromAccount.setAmount(fromAccount.getAmount() - amount);
@@ -39,6 +40,15 @@ public class TransferService {
         transferRepository.save(toAccount);
     }
 	
+=======
+		Account fromAccount = findAccounts(fromId);
+		Account toAccount = findAccounts(toId);
+		fromAccount.setAmount(fromAccount.getAmount() - amount);
+		toAccount.setAmount(toAccount.getAmount() + amount);
+		transferRepository.save(fromAccount);
+		transferRepository.save(toAccount);
+	}
+>>>>>>> aa8f4120ff0625a4a66f08bfec4ef5b3c7b31088
 	
 //	public Account depositMoney(double amount) {
 //		AccountBalance += amount;

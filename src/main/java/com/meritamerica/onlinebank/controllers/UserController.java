@@ -54,7 +54,8 @@ public class UserController {
 		if(isAuthenticated) {
 			User u = userService.findByEmail(email);
 			session.setAttribute("userId", u.getUser_id());
-			return "redirect:/accounts";
+			Long userId = (Long) session.getAttribute("userId");
+			return "redirect:/accounts/" + userId;
 		}
 		else {
 			model.addAttribute("error", "Invalid Credentials. Please try again");
@@ -68,6 +69,7 @@ public class UserController {
 	public String home(HttpSession session, Model model) {
 		// get user from session, save them in the model and return the home page
 		Long userId = (Long) session.getAttribute("userId");
+		System.out.println(userId);
 		User u = userService.findUsers(userId);
 		model.addAttribute("user", u);
 		return "/Home.jsp";

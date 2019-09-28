@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+<<<<<<< HEAD
 		
 			<h1>Transfers</h1>
 <form  action="/makeTransfer/" method="post" modelAttribute="user">
@@ -36,6 +37,33 @@
   Amount: <input type="text" name="amount"><br>
   <input type="submit" value="Submit">
 </form>
+=======
+
+	<h1>Transfers</h1>
+	<form action="/transfers/{id}/{fromId}/{toId}">
+
+		<h3>FROM</h3>
+
+		<select name='Transfers_from'>
+
+			<c:forEach items="${user}" var="user">
+				<option value="${user.account_id}" selected>Account
+					:${user.type} Amount : ${user.amount}</option>
+			</c:forEach>
+		</select> <br></br>
+		<h3>TO</h3>
+
+		<select name='Transfers_to'>
+
+			<c:forEach items="${user}" var="user">
+				<option value="${user.account_id}" selected>Account
+					:${user.type} Amount : ${user.amount}</option>
+			</c:forEach>
+		</select> <br></br> Amount: <input type="text" name="lname"><br> <input
+			type="submit" value="Submit"> <br></br>
+
+	</form>
+>>>>>>> aa8f4120ff0625a4a66f08bfec4ef5b3c7b31088
 
 </body>
 </html>
