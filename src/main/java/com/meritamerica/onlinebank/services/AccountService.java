@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -24,7 +25,10 @@ public class AccountService {
 	}
 	
 	
+	public Account createAccount(Account account) {
 	
+		return accountRepository.save(account);
+	}
 
 	
 	
@@ -63,5 +67,12 @@ public class AccountService {
 		
 			
 		accountRepository.save(account); }
+
+
+
+
+
+
+	
 		
 	}

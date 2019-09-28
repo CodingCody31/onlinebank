@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.meritamerica.onlinebank.models.Account;
 import com.meritamerica.onlinebank.models.User;
@@ -116,5 +117,15 @@ public class AccountController {
 		return "redirect:/accounts/"+userId;
 				
 	}
-
-}
+	
+	@RequestMapping(value = "/createAccount", method = RequestMethod.POST)
+	public String createAccount( @RequestParam("type") Account account, BindingResult result, HttpSession session) {
+		// if result has errors, return the registration page (don't worry about
+		// validations just now)
+		if(result.hasErrors()) {
+			return "/CreateAccount.jsp";
+		} else {
+			accountService.createAccount(account);
+			return "/showAccounts.jsp";
+		}
+} }
