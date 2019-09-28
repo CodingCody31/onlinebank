@@ -29,7 +29,14 @@ public class TransferService {
 		}
 	}
 	
-	
+	public void transfer(Long fromId, Long toId, double amount) {
+		Account fromAccount = findAccounts(fromId);
+		Account toAccount = findAccounts(toId);
+		fromAccount.setAmount(fromAccount.getAmount() - amount);
+		toAccount.setAmount(toAccount.getAmount() + amount);
+		transferRepository.save(fromAccount);
+		transferRepository.save(toAccount);
+	}
 	
 //	public Account depositMoney(double amount) {
 //		AccountBalance += amount;

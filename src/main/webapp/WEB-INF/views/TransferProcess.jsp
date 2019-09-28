@@ -13,7 +13,7 @@
 <body>
 
 	<h1>Transfers</h1>
-	<form action="/action_page.php">
+	<form action="/transfers/{id}/{fromId}/{toId}">
 
 		<h3>FROM</h3>
 

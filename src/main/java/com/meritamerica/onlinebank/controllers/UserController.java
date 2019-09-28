@@ -55,7 +55,7 @@ public class UserController {
 			User u = userService.findByEmail(email);
 			session.setAttribute("userId", u.getUser_id());
 			Long userId = (Long) session.getAttribute("userId");
-			return "redirect:/accounts/{userId}";
+			return "redirect:/accounts/" + userId;
 		}
 		else {
 			model.addAttribute("error", "Invalid Credentials. Please try again");
