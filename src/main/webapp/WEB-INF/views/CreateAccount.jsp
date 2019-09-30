@@ -15,21 +15,20 @@
 	</div>
 	<div class="signup_page">
 		<div id="signup_body">
-			<h1>Sign Up</h1>
+			<h1>Please Choose</h1>
 			<%-- <form:errors path="user.*"/> --%>
-		<form:form method="post" action="/createAccount" modelAttribute="account">
-			
-			<select name="type">
-				<option value="0" selected>(Please Select Account type:)</option>
-				<option value="Savings">Saving</option>
-				<option value="Checking">Checking</option>
-				<option value="IRA">IRA</option>
-				<option value="CD">CD</option>
-			</select> <input type="text" name="choicetext">
-		</div>
-		<p align="center">
-			<br> <input type="submit" name="submit" value="Sign Up">
+		<form:form method="POST" action="/createAccount" modelAttribute="account">
+			<form:select path="type" name="type">
+				<form:option value="0">(Please Select Account type:)</form:option>
+				<form:option value="Savings">Savings</form:option>
+				<form:option value="Checking">Checking</form:option>
+				<form:option value="IRA">IRA</form:option>
+				<form:option value="CD">CD</form:option>
+			</form:select> 
+			<br>
+			<input type="submit" name="submit" value="Submit">
 			</form:form>
+			</div>
 	</div>
 </body>
 </html>

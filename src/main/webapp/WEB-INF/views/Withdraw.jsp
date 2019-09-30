@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<form:form action="/withdraw/${id}" method="put" modelAttribute="account">
+<form:form action="/withdraw" method="put" modelAttribute="account">
 
 
 <c:if test="${errorMessage != null}">

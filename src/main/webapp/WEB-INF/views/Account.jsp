@@ -14,7 +14,7 @@
 			<img id ="logo" src="images/logo.png" value="<%=session.getAttribute("userId")%>"/>>
 		</div>
 		<div class="sidebar">
-			<a href="accounts/${userId}"><h1 id="nav_text_accounts"><b>Accounts</b></h1></a>
+			<a href="/showAccount"><h1 id="nav_text_accounts"><b>Accounts</b></h1></a>
 			
 			<br>
 			<a href="/transactions/${userId}"><h1 id="nav_text_transactions">Transactions</h1></a>
@@ -22,7 +22,7 @@
 			<a href="transfers/${userId}"><h1 id="nav_text_transfers">Transfers</h1></a>
 			<br>
 			<a href="/settings"></a><h1 id="nav_text_settings">Settings</h1></a>
-			<br>
+			<br>			
 			<a href="/"><h1 id="nav_text_signoff">Sign Off</h1></a>
 		</div>
 </body>

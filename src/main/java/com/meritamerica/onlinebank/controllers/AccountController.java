@@ -40,87 +40,91 @@ public class AccountController {
 		return "/Account.jsp";
 	}
 
-	@RequestMapping("/accounts/{id}")
-	public String showAccount(@PathVariable("id") Long id, Model model) {
-		List<Account> user = userService.findUsers(id).getAccounts();
-
-//		List<User> userAccount = accountService.findAccounts(id).getUsers();
-		if (user == null) {
-			return "redirect:/";
-		} else {
-//			model.addAttribute("account", userAccount);
-
-			// String users = userService.findUsers(id).getFirst_name();
+	@RequestMapping("/showAccount")
+	public String showAccount(HttpSession session, Model model) {
+		if(session.getAttribute("userId")== null) {
+			return "/";
+		}
+		Long userId = (Long) session.getAttribute("userId");
+		List<Account> user = userService.findUsers(userId).getAccounts();
 
 			if (user == null) {
 				return "redirect:/";
 			} else {
-				// model.addAttribute("users", users);
-
 				model.addAttribute("user", user);
 				return "/showAccount.jsp";
 			}
 		}
-	}
 
-	@RequestMapping("/accounts/deposit/{id}")
-	public String editLanguage(@PathVariable("id") Long id, Model model) {
+	@RequestMapping("/accounts/deposit")
+	public String editLanguage(HttpSession session, Model model) {
 		System.out.println("Are we getting in here?");
-		Account account = accountService.findAccounts(id);
+		Long userId = (Long) session.getAttribute("userId");
+		Account account = accountService.findAccounts(userId);
 		model.addAttribute("account", account);
 		return "/Deposit.jsp";
 	}
 
-	@RequestMapping("/accounts/withdraw/{id}")
-	public String whithdraw(@PathVariable("id") Long id, Model model) {
+	@RequestMapping("/accounts/withdraw")
+	public String whithdraw(HttpSession session, Model model) {
 		System.out.println("withdraw");
+		Long userId = (Long) session.getAttribute("userId");
 
-		Account account = accountService.findAccounts(id);
+		Account account = accountService.findAccounts(userId);
 		model.addAttribute("account", account);
 		return "/Withdraw.jsp";
 	}
 
-	@RequestMapping(value = "/deposit/{id}", method = RequestMethod.PUT)
-	public String edit(@PathVariable("id") Long id, @Valid @ModelAttribute("amount") double amount, Model model,
+	@RequestMapping(value = "/deposit", method = RequestMethod.PUT)
+	public String edit(@RequestParam("amount") double amount, Model model,
 			HttpSession session) {
-		Account account = accountService.findAccounts(id);
-		User user = userService.findUsers(id);
+		Long userId = (Long) session.getAttribute("userId");
+		Account account = accountService.findAccounts(userId);
+		User user = userService.findUsers(userId);
 		model.addAttribute("account", account);
 		System.out.println(amount);
 		System.out.println(account.getAmount());
 
-		accountService.updateDeposit(id, amount);
+		accountService.updateDeposit(userId, amount);
 //		 session.setAttribute("userId",user.getUser_id());
 
-		Long userId = (Long) session.getAttribute("userId");
+		
 		User u = userService.findUsers(userId);
 
-		return "redirect:/accounts/" + userId;
+		return "redirect:/accounts";
 
 	}
 
-	@RequestMapping(value = "/withdraw/{id}", method = RequestMethod.PUT)
-	public String editWithdraw(@PathVariable("id") Long id, @Valid @ModelAttribute("amount") double amount, Model model,
+	@RequestMapping(value = "/withdraw", method = RequestMethod.PUT)
+	public String editWithdraw(@RequestParam("amount") double amount, Model model,
 			HttpSession session) {
-		Account account = accountService.findAccounts(id);
+		Long userId = (Long) session.getAttribute("userId");
+		Account account = accountService.findAccounts(userId);
 		model.addAttribute("account", account);
 		System.out.println(amount);
 		System.out.println(account.getAmount());
-		accountService.updateWithdraw(id, amount, model);
-		Long userId = (Long) session.getAttribute("userId");
+		accountService.updateWithdraw(userId, amount, model);
 		User u = userService.findUsers(userId);
-		return "redirect:/accounts/" + userId;
+		return "redirect:/accounts";
 
 	}
 	
+	@RequestMapping("/createAccount")
+	public String showCreate(@ModelAttribute("account") Account account, HttpSession session, Model model) {
+		Long userId = (Long)session.getAttribute("userId");
+		return "/CreateAccount.jsp";
+	}
+
 	@RequestMapping(value = "/createAccount", method = RequestMethod.POST)
-	public String createAccount( @RequestParam("type") Account account, BindingResult result, HttpSession session) {
+	public String createAccount(@Valid @ModelAttribute("account") Account account, @RequestParam ("type") String type, BindingResult result, HttpSession session) {
 		// if result has errors, return the registration page (don't worry about
 		// validations just now)
+		Long userId = (Long) session.getAttribute("userId");
 		if(result.hasErrors()) {
 			return "/CreateAccount.jsp";
 		} else {
-			accountService.createAccount(account);
-			return "/showAccounts.jsp";
+			accountService.createAccount(type, account);
+			return "redirect:/showAccount";
 		}
-} }
+	}
+}

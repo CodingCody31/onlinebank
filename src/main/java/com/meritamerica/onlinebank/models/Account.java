@@ -51,8 +51,8 @@ public class Account {
 		this.acc_types = acc_types;
 		this.users = users;
 
-
 	}
+
 
 	public Long getAccount_id() {
 		return account_id;
