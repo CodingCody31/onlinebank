@@ -11,8 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -38,21 +37,11 @@ public class User {
 	private Date createdAt;
 	private Date updatedAt;
 	
-	 @ManyToMany(fetch = FetchType.LAZY)
-	    @JoinTable(
-	        name = "users_accounts", 
-	        joinColumns = @JoinColumn(name = "user_id"), 
-	        inverseJoinColumns = @JoinColumn(name = "account_id")
-	    )
+	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	    private List<Account> accounts;
-	 
-
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "address_id")
-	private Address address;
 
 	public User(String first_name, String last_name, String username, String password, String email, Date createdAt,
-			Date updatedAt, Address address) {
+			Date updatedAt) {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.username = username;
@@ -60,7 +49,6 @@ public class User {
 		this.email = email;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.address = address;
 	}
 
 	
@@ -140,13 +128,6 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 	public List<Account> getAccounts() {
 		return accounts;
 	}

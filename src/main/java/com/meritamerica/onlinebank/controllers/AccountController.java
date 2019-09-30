@@ -57,25 +57,25 @@ public class AccountController {
 		}
 
 	@RequestMapping("/accounts/deposit")
-	public String editLanguage(HttpSession session, Model model) {
+	public String editLanguage(@ModelAttribute("account")Account account, HttpSession session, Model model) {
 		System.out.println("Are we getting in here?");
 		Long userId = (Long) session.getAttribute("userId");
-		Account account = accountService.findAccounts(userId);
+//		Account account = accountService.findAccounts(userId);
 		model.addAttribute("account", account);
 		return "/Deposit.jsp";
 	}
 
 	@RequestMapping("/accounts/withdraw")
-	public String whithdraw(HttpSession session, Model model) {
+	public String whithdraw(@ModelAttribute("account")Account account, HttpSession session, Model model) {
 		System.out.println("withdraw");
 		Long userId = (Long) session.getAttribute("userId");
 
-		Account account = accountService.findAccounts(userId);
+//		Account account = accountService.findAccounts(userId);
 		model.addAttribute("account", account);
 		return "/Withdraw.jsp";
 	}
 
-	@RequestMapping(value = "/deposit", method = RequestMethod.PUT)
+	@RequestMapping(value = "/deposit", method = RequestMethod.POST)
 	public String edit(@RequestParam("amount") double amount, Model model,
 			HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
@@ -83,7 +83,6 @@ public class AccountController {
 		User user = userService.findUsers(userId);
 		model.addAttribute("account", account);
 		System.out.println(amount);
-		System.out.println(account.getAmount());
 
 		accountService.updateDeposit(userId, amount);
 //		 session.setAttribute("userId",user.getUser_id());
@@ -123,7 +122,7 @@ public class AccountController {
 		if(result.hasErrors()) {
 			return "/CreateAccount.jsp";
 		} else {
-			accountService.createAccount(type, account);
+			accountService.createAccount(userId, type, account);
 			return "redirect:/showAccount";
 		}
 	}

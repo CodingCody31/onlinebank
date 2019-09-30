@@ -25,31 +25,21 @@ public class Account {
 	private Integer acc_num;
 	private Double amount; 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "acc_type_id")
-	private Acc_Type acc_types;
-	
-	 @ManyToMany(fetch = FetchType.LAZY)
-	    @JoinTable(
-	        name = "users_accounts", 
-	        joinColumns = @JoinColumn(name = "user_id"), 
-	        inverseJoinColumns = @JoinColumn(name = "account_id")
-	    )
-	 
-	    private List<User> users;
+	@JoinColumn(name = "user_id")
+	    private User user;
 
 
 	public Account() {
 	}
 
-	public Account(Long account_id, String type, Integer acc_num, Double amount, Acc_Type acc_types, List<User> users) {
+	public Account(Long account_id, String type, Integer acc_num, Double amount, User user) {
 
 	
 		this.account_id = account_id;
 		this.type = type;
 		this.acc_num = acc_num;
 		this.amount = amount;
-		this.acc_types = acc_types;
-		this.users = users;
+		this.user = user;
 
 	}
 
@@ -78,14 +68,6 @@ public class Account {
 		this.acc_num = acc_num;
 	}
 
-	public Acc_Type getAcc_types() {
-		return acc_types;
-	}
-
-	public void setAcc_types(Acc_Type acc_types) {
-		this.acc_types = acc_types;
-	}
-
 	public Double getAmount() {
 		return amount;
 	}
@@ -99,12 +81,12 @@ public class Account {
 		
 	}
 
-	public List<User> getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

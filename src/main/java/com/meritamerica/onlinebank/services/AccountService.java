@@ -21,11 +21,14 @@ public class AccountService {
 		this.userService = userService;
 	}
 
-	public Account createAccount(String type, Account account) {
+	public Account createAccount(Long id, String type, Account account) {
 		Random random = new Random();
+		User u = userService.findUsers(id);
+		account.setUser(u);
 		account.setType(type);
 		Integer accNum = random.nextInt();
 		account.setAcc_num(accNum);
+		account.setAmount(0.0);
 		return accountRepository.save(account);
 	}
 
