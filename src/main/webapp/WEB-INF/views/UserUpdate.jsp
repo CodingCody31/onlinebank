@@ -13,26 +13,13 @@
 		
 </head>
 <body>
-	<div class="header">
-			<img id ="logo" src="images/logo.png">
-		</div>
-		<div class="sidebar">
-			<a href="/accounts"><h1 id="nav_text_accounts">Accounts</h1></a>
-			<br>
-			<a href="/transactions"><h1 id="nav_text_transactions">Transactions</h1></a>
-			<br>
-			<a href="/transfers"><h1 id="nav_text_transfers">Transfers</h1></a>
-			<br>
-			<a href="/settings"></a><h1 id="nav_text_settings"><b>Settings</b></h1></a>
-			<br>
-			<a href="/"><h1 id="nav_text_signoff">Sign Off</h1></a>
-					</div> 
+	
 					
 								<div>
-			<form:form id="regForm" modelAttribute="user" action="/update/${id}" method="post">
-			<input type="hidden" name="_method" value="put">
+			<form:form id="regForm" modelAttribute="user" action="/update/${id}" method="post"  >
+			<input type="hidden" name="_method" value="put" >
 				<br><br><br>
-				<table class="table table-hover">
+				<table class="table table-hover" >
 				<tr>
 					<td> <form:label path="first_name">First Name</form:label></td>
 					<td> <form:input path="first_name" name="first_name" id="first_name"/></td>
@@ -54,8 +41,8 @@
 					<td><form:input path="password" name="password" id="Password" /></td>
 				</tr>
 			</table>
-		  <input type="submit" value="Submit"/>
-		  </form:form>
+<input
+			type="submit" value="Update User" style="background-color:#1A2F42;color:white;width:250px;height:50px; font-size: 150%;">		  </form:form>
 		
 			
 			</div>
