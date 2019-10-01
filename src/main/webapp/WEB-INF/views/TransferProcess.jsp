@@ -1,8 +1,9 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isErrorPage="true" %> 
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isErrorPage="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,57 +13,34 @@
 </head>
 <body>
 
-		
-			<h1>Transfers</h1>
-<form  action="/makeTransfer/" method="post" modelAttribute="user">
-			
-				<h3>FROM </h3>
-			
-	<select name='idFrom'>
-	
-    <c:forEach items="${user}" var="user">
-        <option value="${user.account_id}" selected>Account :${user.type} Amount : ${user.amount}</option>
-    </c:forEach>
-</select>
-<br></br>
-	<h3>TO</h3>
 
-<select name='idTo'>
-	
-    <c:forEach items="${user}" var="user">
-        <option value="${user.account_id}" selected>Account :${user.type} Amount : ${user.amount}</option>
-    </c:forEach>
-</select>
-		
-  Amount: <input type="text" name="amount"><br>
-  <input type="submit" value="Submit">
-</form>
+	<h1>Transfer Money</h1>
+	<form action="/makeTransfer/" method="post" modelAttribute="user">
 
-	<h1>Transfers</h1>
-	<form action="/transfers/{id}/{fromId}/{toId}">
+		<h3>From</h3>
 
-		<h3>FROM</h3>
-
-		<select name='Transfers_from'>
+		<select name='idFrom' style="width:450px;height:50px;  background-color: white;
+		">
 
 			<c:forEach items="${user}" var="user">
 				<option value="${user.account_id}" selected>Account
 					:${user.type} Amount : ${user.amount}</option>
 			</c:forEach>
 		</select> <br></br>
-		<h3>TO</h3>
+		<h3>To</h3>
 
-		<select name='Transfers_to'>
+		<select name='idTo'  style="width:450px;height:50px;  background-color: white;
+		">
 
 			<c:forEach items="${user}" var="user">
 				<option value="${user.account_id}" selected>Account
 					:${user.type} Amount : ${user.amount}</option>
 			</c:forEach>
-		</select> <br></br> Amount: <input type="text" name="lname"><br> <input
-			type="submit" value="Submit"> <br></br>
+		</select>
 
+		<h3>Amount</h3>
+
+		<input type="text" name="amount" style="width:250px;height:40px;  background-color: white;
+		"><br> <br><input
+			type="submit" value="Send Money" style="background-color:#1A2F42;color:white;width:450px;height:50px; font-size: 150%;">
 	</form>
->>>>>>> aa8f4120ff0625a4a66f08bfec4ef5b3c7b31088
-
-</body>
-</html>

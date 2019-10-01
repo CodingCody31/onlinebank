@@ -21,7 +21,7 @@
 			<br>
 			<a href="transfers/${userId}"><h1 id="nav_text_transfers">Transfers</h1></a>
 			<br>
-			<a href="settings/${userId}"><h1 id="nav_text_settings">Settings</h1></a>
+			<a href="/settings"></a><h1 id="nav_text_settings">Settings</h1></a>
 			<br>			
 			<a href="/"><h1 id="nav_text_signoff">Sign Off</h1></a>
 		</div>

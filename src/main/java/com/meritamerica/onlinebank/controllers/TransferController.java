@@ -57,7 +57,7 @@ public class TransferController {
 		System.out.println(account.getAmount());
 		transferService.transfer(idFrom, idTo, amount);
 
-		return "/TransferProcess.jsp";
+		return "/showAccount.jsp";
 
 	}
 

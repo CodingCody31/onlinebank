@@ -8,7 +8,7 @@
 
 .sidebar{
 	display: inline-block;
-	width: 19%;
+	width: 340px;
 	height: 800px;
 	margin-top: 25px;
 	border-right: 2px solid black;
@@ -159,46 +159,6 @@
 				font-weight: 300;
 				padding-left: 5px;
 			}
-			#signin input[type=last_name]{
-				border: 2px solid #707070;
-				width: 220px;
-				height: 30px;
-				margin-bottom: 10px;
-				font-family: Helvetica Neue;
-				font-size: 14px;
-				font-weight: 300;
-				padding-left: 5px;
-			}
-			#signin input[type=email]{
-				border: 2px solid #707070;
-				width: 220px;
-				height: 30px;
-				margin-bottom: 10px;
-				font-family: Helvetica Neue;
-				font-size: 14px;
-				font-weight: 300;
-				padding-left: 5px;
-			}
-				#signin input[type=username]{
-				border: 2px solid #707070;
-				width: 220px;
-				height: 30px;
-				margin-bottom: 10px;
-				font-family: Helvetica Neue;
-				font-size: 14px;
-				font-weight: 300;
-				padding-left: 5px;
-			}
-				#signin input[type=first_name]{
-				border: 2px solid #707070;
-				width: 220px;
-				height: 30px;
-				margin-bottom: 10px;
-				font-family: Helvetica Neue;
-				font-size: 14px;
-				font-weight: 300;
-				padding-left: 5px;
-			}
 			#signin input[type=submit]{
 				background-color: #1A2F42;
 				font-weight: bolder;
@@ -312,42 +272,6 @@
 				font-family: Helvetica Neue;
 				font-size: 14px;
 			}
-				#signup_body form input[type=email] {
-				margin-top: 20px;
-				border: 1px solid black;
-				height: 50px;
-				width: 400px;
-				padding-left: 20px;
-				font-family: Helvetica Neue;
-				font-size: 14px;
-			}
-			#signup_body form input[type=last_name] {
-				margin-top: 20px;
-				border: 1px solid black;
-				height: 50px;
-				width: 400px;
-				padding-left: 20px;
-				font-family: Helvetica Neue;
-				font-size: 14px;
-			}
-			#signup_body form input[type=username] {
-				margin-top: 20px;
-				border: 1px solid black;
-				height: 50px;
-				width: 400px;
-				padding-left: 20px;
-				font-family: Helvetica Neue;
-				font-size: 14px;
-			}
-			#signup_body form input[type=first_name] {
-				margin-top: 20px;
-				border: 1px solid black;
-				height: 50px;
-				width: 400px;
-				padding-left: 20px;
-				font-family: Helvetica Neue;
-				font-size: 14px;
-			}
 			#signup_body form select {
 				margin-top: 20px;
 				border: 1px solid black;
@@ -366,71 +290,9 @@
 				padding: 15px 50px 15px 50px;
 				color: white;
 			}
-.main_container{
-	margin-top: 25px;
-	vertical-align: top;
-	display: inline-block;
-	text-align: center;
-	width: 80%;
-}
-	.main_container p{
-	margin-left: 135px;
-	text-align: left;
-	font-weight: bold;
-	font-family: Helvetica Neue;
-	font-size: 20px;
-	margin-bottom: 5px;
-	}
-	.main_container h2{
-	font-family: Helvetica Neue;
-	font-size: 30px;
-	margin-bottom: 5px;
-	}
-	#transaction_frame{
-		border:1px solid black;
-		display: inline-block;
-		width: 80%;
-	}
-	
-		#main_boxes_transfer{
-			display: inline-block;
-			border: 2px solid black;
-			width: 80%;
-			height: 200px;
-			margin-bottom: 10px;
-		}
-		#main_boxes_transactions{
-			display: inline-block;
-			border: 2px solid black;
-			width: 80%;
-			height: 300px;
-			box-shadow: 2px 2px 5px grey;
-		}
-	#main_boxes_setting{
-			display: inline-block;
-			border: 2px solid black;
-			width: 80%;
-			height: 300px;
-			box-shadow: 2px 2px 5px grey;
-			text-align: left;
-		}
-	#profile_pic{
-		display: inline-block;
-		width: 160px;
-		height: 160px;
-		border-radius: 80px;
-		border: 1px solid black;
-	}
-	#main_boxes_setting h1{
-		margin: 10px;
-		padding: 125px;
-		border-right: 2px solid black;
-		display: inline-block;
-		font-family: Helvetica Neue;
-		font-size: 20px;
-	}
 #logo{
 	margin-top:15px;
 	margin-left: 20px;
 }
+
 

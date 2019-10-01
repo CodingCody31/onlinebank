@@ -31,9 +31,10 @@
 			</div>
 
 			
+			<input type="button" value="Create" onclick="window.location='UserUpdate.jsp'" >
 
 			 			
-			<input type="button" value="Update" onclick="window.location='/update/${user.user_id}'" >
+			<input type="button" value="Update" onclick="window.location='Home.jsp'" >
 			
 			<button type="button"> Delete </button>
 
