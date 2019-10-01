@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<<<<<<< HEAD
+
 		
 			<h1>Transfers</h1>
 <form  action="/makeTransfer/" method="post" modelAttribute="user">
@@ -37,7 +37,6 @@
   Amount: <input type="text" name="amount"><br>
   <input type="submit" value="Submit">
 </form>
-=======
 
 	<h1>Transfers</h1>
 	<form action="/transfers/{id}/{fromId}/{toId}">

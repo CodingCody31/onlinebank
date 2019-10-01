@@ -22,8 +22,8 @@
 <c:forEach items="${user}" var="user">
        <tr>
            <td><c:out value="${user.account_id} ${user.type} ${user.amount}" />
-           <a href="/accounts/deposit"> ->Deposit</a>            
-           <a href="/accounts/withdraw"> ->Withdraw</a>
+           <a href="/deposit/${user.account_id}"> ->Deposit</a>            
+           <a href="/withdraw/${user.account_id}"> ->Withdraw</a>
             <br/></td>
            
           

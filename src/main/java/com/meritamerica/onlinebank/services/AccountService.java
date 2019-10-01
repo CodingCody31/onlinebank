@@ -44,6 +44,8 @@ public class AccountService {
 	public void updateDeposit(long id, double d) {
 		Account account = findAccounts(id);
 		System.out.print("Update Deposit --- >" + account);
+		System.out.print("Update Deposit --- >" + account.getType());
+
 		account.setAmount(d + account.getAmount());
 		System.out.print("Set Amount --- >" + d + account.getAmount());
 
@@ -54,13 +56,9 @@ public class AccountService {
 
 		Account account = findAccounts(id);
 		System.out.print("Update Deposit --- >" + account);
-		account.setAmount(d - account.getAmount());
+		account.setAmount(account.getAmount() - d);
 
-		if (d > account.getAccount_id()) {
-			model.addAttribute("errorMessage", "You can not whitdraw");
-		} else
-
-			accountRepository.save(account);
+		accountRepository.save(account);
 	}
 
 }

@@ -25,7 +25,7 @@ import com.meritamerica.onlinebank.services.UserService;
 @Controller
 public class AccountController {
 
-	static long vUser_Id;
+	static long vAccound_ID;
 
 	private final AccountService accountService;
 	private final UserService userService;
@@ -56,37 +56,36 @@ public class AccountController {
 			}
 		}
 
-	@RequestMapping("/accounts/deposit")
-	public String editLanguage(@ModelAttribute("account")Account account, HttpSession session, Model model) {
+	@RequestMapping(value = "/deposit/{id}")
+	public String editLanguage(@PathVariable("id")Long id,@ModelAttribute("account")Account account, HttpSession session, Model model) {
 		System.out.println("Are we getting in here?");
 		Long userId = (Long) session.getAttribute("userId");
 //		Account account = accountService.findAccounts(userId);
 		model.addAttribute("account", account);
+		vAccound_ID=id;
 		return "/Deposit.jsp";
 	}
 
-	@RequestMapping("/accounts/withdraw")
-	public String whithdraw(@ModelAttribute("account")Account account, HttpSession session, Model model) {
+	@RequestMapping("/withdraw/{id}")
+	public String whithdraw(@PathVariable("id")Long id,@ModelAttribute("account")Account account, HttpSession session, Model model) {
 		System.out.println("withdraw");
 		Long userId = (Long) session.getAttribute("userId");
+		vAccound_ID=id;
 
 //		Account account = accountService.findAccounts(userId);
 		model.addAttribute("account", account);
 		return "/Withdraw.jsp";
 	}
 
-	@RequestMapping(value = "/deposit", method = RequestMethod.POST)
+	@RequestMapping(value = "account/deposit/", method = RequestMethod.POST)
 	public String edit(@RequestParam("amount") double amount, Model model,
 			HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
-		Account account = accountService.findAccounts(userId);
+		Account account = accountService.findAccounts(vAccound_ID);
 		User user = userService.findUsers(userId);
-		model.addAttribute("account", account);
-		System.out.println(amount);
+		Long accountId = account.getAccount_id();
 
-		accountService.updateDeposit(userId, amount);
-//		 session.setAttribute("userId",user.getUser_id());
-
+		accountService.updateDeposit(vAccound_ID, amount);
 		
 		User u = userService.findUsers(userId);
 
@@ -94,15 +93,13 @@ public class AccountController {
 
 	}
 
-	@RequestMapping(value = "/withdraw", method = RequestMethod.PUT)
+	@RequestMapping(value = "account/withdraw/", method = RequestMethod.POST)
 	public String editWithdraw(@RequestParam("amount") double amount, Model model,
 			HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
-		Account account = accountService.findAccounts(userId);
-		model.addAttribute("account", account);
-		System.out.println(amount);
-		System.out.println(account.getAmount());
-		accountService.updateWithdraw(userId, amount, model);
+		Account account = accountService.findAccounts(vAccound_ID);
+	
+		accountService.updateWithdraw(vAccound_ID, amount, model);
 		User u = userService.findUsers(userId);
 		return "redirect:/accounts";
 

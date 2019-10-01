@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<form:form action="/deposit" method="POST" modelAttribute="account">
+<form:form action="/account/deposit/" method="post" modelAttribute="account">
 
 
 

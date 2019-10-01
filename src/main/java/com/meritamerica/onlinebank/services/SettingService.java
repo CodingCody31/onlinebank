@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 
-import com.meritamerica.onlinebank.models.Address;
 import com.meritamerica.onlinebank.models.User;
 import com.meritamerica.onlinebank.repositories.SettingRepository;
 
