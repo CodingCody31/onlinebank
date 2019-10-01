@@ -20,7 +20,7 @@
 			</h1></a> <br> <a href="transaction.html"><h1
 				id="nav_text_transactions">Transactions</h1></a> <br> <a
 			href="/transfers/${userId }"><h1 id="nav_text_transfers">Transfers</h1></a> <br>
-		<a href="setting"></a>
+		<a href="settings/${userId}">
 		<h1 id="nav_text_settings">Settings</h1>
 		</a> <br> <a href="index.html"><h1 id="nav_text_signoff">Sign
 				Off</h1></a>
